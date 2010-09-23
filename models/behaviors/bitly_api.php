@@ -1,25 +1,21 @@
 <?php
 /**
- * CakePHP Bitly
+ * Bitly plugin for CakePHP
  *
- * Copyright 2009 - 2010, Cake Development Corporation
- *                        1785 E. Sahara Avenue, Suite 490-423
- *                        Las Vegas, Nevada 89104
+ * Copyright 2009-2010, Cake Development Corporation (http://cakedc.com)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright 2009 - 2010, Cake Development Corporation
- * @link      http://github.com/CakeDC/Bitly
- * @package   plugins.bitly
- * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @copyright Copyright 2009-2010, Cake Development Corporation (http://cakedc.com)
+ * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
  * Short description for class.
  *
- * @package		bitly
- * @subpackage	behaviors
+ * @package bitly
+ * @subpackage bitly.models.behaviors
  */
 
 /**
@@ -38,7 +34,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * the findBy* / findAllBy* magic methods.
  * 
  * @var array
- * @access public
  */
 	public $mapMethods = array();
 	
@@ -46,7 +41,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * HttpSocket unique instance
  * 
  * @var HttpSocket
- * @access protected
  */
 	protected $_Http = null;
 
@@ -54,7 +48,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * Default behavior params - initialized in constructor
  * 
  * @var array
- * @access protected
  */
 	protected $_defaults = array(
 		'login' => null,
@@ -65,7 +58,6 @@ class BitlyApiBehavior extends ModelBehavior {
  *
  * @see http://code.google.com/p/bitly-api/wiki/ApiDocumentation#REST_API
  * @var array
- * @access private
  */
 	private $__methods = array(
 		'shorten' => array(
@@ -99,7 +91,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * Endpoint url of the API
  * 
  * @var string
- * @access private
  */
 	private $__apiEndpoint = 'http://api.bit.ly/';
 
@@ -107,7 +98,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * Bit.ly API version used in this behavior
  *  
  * @var string
- * @access private
  */
 	private $__version = '2.0.1';
 
@@ -115,7 +105,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * Map between the lowercased name of a method and its real name
  * 
  * @var array key => Value
- * @access private
  */
 	private $__lowMap = array();
 
@@ -124,7 +113,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * 	- Initializes credentials with Config keys
  * 
  * @return void
- * @access public
  */
 	public function __construct() {
 		parent::__construct();
@@ -142,7 +130,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * 	- login: API login
  * 	- apiKey: API key available in http://bit.ly/account/your_api_key
  * @return boolean Always true
- * @access public
  */
 	public function setup(Model $Model, $settings = array()) {
 		$this->settings[$Model->alias] = array_merge($this->_defaults, $settings);
@@ -171,7 +158,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * @param string $method Method name
  * @param array Parameters for the API method
  * @return array Result information, false otherwise
- * @access public
  */
 	public function apiCall(&$Model, $method, $params = array()) {
 		$return = false;
@@ -216,7 +202,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * @param array $settings Params settings
  * @param array $params Passed params
  * @return boolean True on success
- * @access private
  */ 
 	private function __checkParams($method, $settings, $params) {
 		$result = array();
@@ -259,7 +244,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * @param array $settings Method settings
  * @param array $params Passed params
  * @return string Best value to use
- * @access private
  */ 
 	private function __selectBest($argType, $settings, $params) {
 		if (!empty($params[$argType])) {
@@ -278,7 +262,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * @param array $settings Method settings
  * @param array $params Passed params
  * @return string Uri
- * @access private
  */ 
 	private function __generateUri($settings, $params) {
 		$url = isset($settings['baseUrl']) ? $settings['baseUrl'] : $this->__apiEndpoint;
@@ -294,7 +277,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * @param string $url Url to call
  * @param mixed $request Query string parameters, either in string form or as a keyed array
  * @return mixed False in case of error, response information otherwise: array with keys "result" and "code"
- * @access private
  */
 	private function __doRequest($method, $url, $request = array()) {
 		$result = false;
@@ -320,7 +302,6 @@ class BitlyApiBehavior extends ModelBehavior {
  * @param array Response to format
  * @param string Response type
  * @return array Array formatted API response
- * @access private
  */
 	private function __formatResponse($response, $format) {
 		if (in_array($format, array('xml', 'rss', 'atom'))) {
@@ -344,7 +325,6 @@ class BitlyApiBehavior extends ModelBehavior {
  *
  * @param array
  * @return array
- * @access private
  */
 	private function __fixXml($data) {
 		foreach ($data as $key => $value) {
@@ -411,7 +391,6 @@ class BitlyException extends RuntimeException {
  * Status code for the error
  * 
  * @var string
- * @access protected
  */
 	protected $_statusCode = null;
 	
@@ -437,4 +416,3 @@ class BitlyException extends RuntimeException {
 		return $this->_statusCode;
 	}
 }
-?>

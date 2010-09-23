@@ -14,8 +14,8 @@
 /**
  * Bit.ly Access Model
  *
- * @package		bitly
- * @subpackage	bitly.models
+ * @package bitly
+ * @subpackage bitly.models
  */
 class BitlyAccess extends AppModel {
 

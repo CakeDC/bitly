@@ -1,4 +1,4 @@
-## Introduction ##
+# Bit.ly Plugin for CakePHP #
 
 The Bit.ly plugin for CakePHP allows you to access the [bit.ly](http://bit.ly) API with CakePHP.
 
