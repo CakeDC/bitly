@@ -12,19 +12,18 @@
  */
 
 /**
- * Short description for class.
- *
- * @package bitly
- * @subpackage bitly.models.behaviors
- */
-
-/**
  * Bit.ly Api access based off of the Twitter Api behavior
  *
  * @see http://code.google.com/p/bitly-api/wiki/ApiDocumentation
  */
 App::import('Core', array('HttpSocket', 'Xml'));
 
+/**
+ * Bit.ly API Behavior
+ *
+ * @package bitly
+ * @subpackage bitly.models.behaviors
+ */
 class BitlyApiBehavior extends ModelBehavior {
 	
 /**
